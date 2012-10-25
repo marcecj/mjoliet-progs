@@ -11,8 +11,8 @@ case $1 in
         ;;
 esac
 
-if [ ! -z $2 ]; then
-    if [ -f $2 ]; then
+if [ ! -z "$2" ]; then
+    if [ -f "$2" ]; then
         flacfile="$2"
     else
         echo "File '$2' non-existant."
@@ -66,7 +66,7 @@ done
 
 if [ ! -z "$metaflaccmd" -a ! -z "$flacfile" ]
 then
-    # echo metaflac $metaflaccmd $flacfile
-    eval metaflac $metaflaccmd $flacfile
+    # echo metaflac $metaflaccmd "\"$flacfile"\"
+    eval metaflac $metaflaccmd "\"$flacfile\""
 fi
 }

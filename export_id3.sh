@@ -15,7 +15,7 @@ if [ ! -z "$2" ]; then
     if [ -f "$2" ]; then
         flacfile="$2"
     else
-        echo "File '$2' non-existant."
+        echo "File '$2' non-existent."
         exit
     fi
 fi

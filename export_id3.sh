@@ -6,6 +6,7 @@ case $1 in
         echo
         echo "When a tag has no Vorbis Comment equivalent, it is exported verbatim. Pictures are currently not exported."
         echo "If the second argument is a file, metaflac is called on the file instead of printing tags."
+        exit
         ;;
     *) file="$1"
         ;;

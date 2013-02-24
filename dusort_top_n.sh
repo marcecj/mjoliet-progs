@@ -48,5 +48,5 @@ echo
 # 4.) second pass through du
 eval $lscommand | tr "\n" "\0" \
 | du $duopts 2>/dev/null | sort -hr \
-| head -n$n | tail -n$(($n-1)) | cut -f2 | tr "\n" "\0" \
+| head -n$(($n+1)) | tail -n$n | cut -f2 | tr "\n" "\0" \
 | du $duopts 2>/dev/null

@@ -45,6 +45,7 @@ mem="768"
 smp="sockets=1,cores=2,threads=1"
 # smp="2"
 boot="order=c,menu=off"
+# machine="pc-q35-1.4,accel=kvm,usb=on"
 machine="pc,accel=kvm,usb=on"
 layout="de"
 pc_definition="-name WindowsXP \
@@ -63,6 +64,9 @@ miscoptions="-uuid b3932dcf-d95f-6a58-af90-25f857c95787 \
 #########
 # devices
 #########
+
+# pcibus="-device pci-bridge,chassis_nr=1,bus=pcie.0,id=pci.0"
+# pcibus="-device ioh3420 -device i82801b11-bridge"
 
 # disk0="-drive file=/dev/vg0/KVMWinXP,if=none,id=drive-virtio-disk0,format=raw,cache=none,aio=native \
     # -device virtio-blk-pci,scsi=off,bus=pci.0,addr=0x7,drive=drive-virtio-disk0,id=virtio-disk0"
@@ -112,5 +116,5 @@ spice="-device virtio-serial-pci,id=virtio-serial0,bus=pci.0,addr=0x5 \
 # start qemu
 ############
 
-/usr/bin/qemu-system-x86_64 $pc_definition $miscoptions \
+/usr/bin/qemu-system-x86_64 $pc_definition $miscoptions $pcibus \
     $disks $net $sound $usb $mouse $display $vga $spice $balloon

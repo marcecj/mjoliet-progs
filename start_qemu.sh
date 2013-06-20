@@ -90,7 +90,8 @@ usb="-device piix3-usb-uhci,id=usb,bus=pci.0,addr=0x1.0x2"
 mouse="-device usb-tablet,id=input0"
 
 balloon="-device virtio-balloon-pci,id=balloon0,bus=pci.0,addr=0x6"
-misc="-chardev pty,id=charserial0 \
+
+isabus="-chardev pty,id=charserial0 \
     -device isa-serial,chardev=charserial0,id=serial0"
 
 #######################
@@ -114,4 +115,4 @@ spice="-device virtio-serial-pci,id=virtio-serial0,bus=pci.0,addr=0x5 \
 ############
 
 /usr/bin/qemu-system-x86_64 $pc_definition $miscoptions \
-    $disks $net $sound $usb $mouse $display $vga $spice $balloon $misc
+    $disks $net $sound $usb $mouse $display $vga $spice $balloon $isabus

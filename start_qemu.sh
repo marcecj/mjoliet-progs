@@ -47,14 +47,14 @@ smp="sockets=1,cores=2,threads=1"
 boot="order=c,menu=off"
 machine="pc-1.0,accel=kvm,usb=off"
 # machine="pc-q35-1.4,accel=kvm,usb=off"
-lang="de"
+layout="de"
 pc_definition="-name WindowsXP \
     -machine $machine \
     -cpu $cpu \
     -m $mem \
     -smp $smp \
     -boot $boot \
-    -k $lang"
+    -k $layout"
 
 # miscoptions="-uuid b3932dcf-d95f-6a58-af90-25f857c95787 \
     # -no-user-config \

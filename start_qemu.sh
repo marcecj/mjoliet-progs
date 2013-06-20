@@ -55,11 +55,7 @@ pc_definition="-name WindowsXP \
     -boot $boot \
     -k $layout"
 
-# miscoptions="-uuid b3932dcf-d95f-6a58-af90-25f857c95787 \
-    # -no-user-config \
-    # -nodefaults \
-    # -rtc base=localtime \
-    # -no-shutdown"
+# omitted options: -nodefaults -no-shutdown
 miscoptions="-uuid b3932dcf-d95f-6a58-af90-25f857c95787 \
     -no-user-config \
     -rtc base=localtime"

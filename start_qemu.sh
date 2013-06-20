@@ -45,7 +45,7 @@ mem="768"
 smp="sockets=1,cores=2,threads=1"
 # smp="2"
 boot="order=c,menu=off"
-machine="pc-1.0,accel=kvm,usb=off"
+machine="pc,accel=kvm,usb=off"
 layout="de"
 pc_definition="-name WindowsXP \
     -machine $machine \

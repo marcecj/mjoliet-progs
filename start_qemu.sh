@@ -89,9 +89,9 @@ usb="-device piix3-usb-uhci,id=usb,bus=pci.0,addr=0x1.0x2"
 
 mouse="-device usb-tablet,id=input0"
 
-# misc=-chardev pty,id=charserial0 \
-#     -device isa-serial,chardev=charserial0,id=serial0 \
-#     -device virtio-balloon-pci,id=balloon0,bus=pci.0,addr=0x6
+misc="-chardev pty,id=charserial0 \
+    -device isa-serial,chardev=charserial0,id=serial0 \
+    -device virtio-balloon-pci,id=balloon0,bus=pci.0,addr=0x6"
 
 #######################
 # display related stuff

@@ -70,10 +70,10 @@ miscoptions="-uuid b3932dcf-d95f-6a58-af90-25f857c95787 \
 #########
 
 disk0="-drive file=/dev/vg0/KVMWinXP,if=none,id=drive-virtio-disk0,format=raw,cache=none,aio=native \
-    -device virtio-blk-pci,bus=pci.0,addr=0x7,drive=drive-virtio-disk0,id=virtio-disk0"
+    -device virtio-blk-pci,scsi=off,bus=pci.0,addr=0x7,drive=drive-virtio-disk0,id=virtio-disk0"
 
 disk1="-drive file=/home/marcec/VBoxDrives/NewHardDisk1.img,if=none,id=drive-virtio-disk2,format=qcow2,cache=writethrough,aio=native \
-    -device virtio-blk-pci,bus=pci.0,addr=0x9,drive=drive-virtio-disk2,id=virtio-disk2"
+    -device virtio-blk-pci,scsi=off,bus=pci.0,addr=0x9,drive=drive-virtio-disk2,id=virtio-disk2"
 
 cdrom="-drive if=none,id=drive-ide0-1-0,readonly=on,format=raw \
     -device ide-cd,bus=ide.1,unit=0,drive=drive-ide0-1-0,id=ide0-1-0"

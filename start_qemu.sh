@@ -64,7 +64,9 @@ miscoptions="-uuid b3932dcf-d95f-6a58-af90-25f857c95787 \
 # devices
 #########
 
-disk0="-drive file=/dev/vg0/KVMWinXP,if=none,id=drive-virtio-disk0,format=raw,cache=none,aio=native \
+# disk0="-drive file=/dev/vg0/KVMWinXP,if=none,id=drive-virtio-disk0,format=raw,cache=none,aio=native \
+    # -device virtio-blk-pci,scsi=off,bus=pci.0,addr=0x7,drive=drive-virtio-disk0,id=virtio-disk0"
+disk0="-drive file=/home/marcec/VBoxDrives/WinXPProSP2,if=none,id=drive-virtio-disk0,format=qcow2,cache=writethrough,aio=native \
     -device virtio-blk-pci,scsi=off,bus=pci.0,addr=0x7,drive=drive-virtio-disk0,id=virtio-disk0"
 
 disk1="-drive file=/home/marcec/VBoxDrives/NewHardDisk1.img,if=none,id=drive-virtio-disk2,format=qcow2,cache=writethrough,aio=native \

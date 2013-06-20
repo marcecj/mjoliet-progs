@@ -42,7 +42,7 @@
 # cpu="Opteron_G2,+cr8legacy,+extapic,+cmp_legacy,+3dnow,+3dnowext,+fxsr_opt,+mmxext,+ht,+vme"
 cpu="host"
 mem="768"
-smp="2,sockets=1,cores=2,threads=2"
+smp="sockets=1,cores=2,threads=1"
 # smp="2"
 boot="order=c,menu=off"
 machine="pc-1.0,accel=kvm,usb=off"

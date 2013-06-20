@@ -45,7 +45,7 @@ mem="768"
 smp="sockets=1,cores=2,threads=1"
 # smp="2"
 boot="order=c,menu=off"
-machine="pc,accel=kvm,usb=off"
+machine="pc,accel=kvm,usb=on"
 layout="de"
 pc_definition="-name WindowsXP \
     -machine $machine \
@@ -84,7 +84,7 @@ net="-netdev tap,script=no,downscript=no,ifname=kvm0,id=hostnet0 \
 
 sound="-device AC97,id=sound0,bus=pci.0,addr=0x4"
 
-usb="-device piix3-usb-uhci,id=usb,bus=pci.0,addr=0x1.0x2"
+# usb="-device piix3-usb-uhci,id=usb,bus=pci.0,addr=0x1.0x2"
 
 mouse="-device usb-tablet,id=input0"
 

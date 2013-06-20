@@ -48,7 +48,7 @@ boot="order=c,menu=off"
 machine="pc-1.0,accel=kvm,usb=off"
 # machine="pc-q35-1.4,accel=kvm,usb=off"
 lang="de"
-pc_definition="-name WindowsXP -S \
+pc_definition="-name WindowsXP \
     -machine $machine \
     -cpu $cpu \
     -m $mem \

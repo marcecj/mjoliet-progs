@@ -117,4 +117,4 @@ spice="-device virtio-serial-pci,id=virtio-serial0,bus=pci.0,addr=0x5 \
 ############
 
 /usr/bin/qemu-system-x86_64 $pc_definition $miscoptions $pcibus \
-    $disks $net $sound $usb $mouse $display $vga $spice $balloon
+    $disks $net $sound $usb $mouse $display $vga $spice $balloon $isabus

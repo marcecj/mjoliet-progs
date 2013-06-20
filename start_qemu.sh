@@ -94,6 +94,7 @@ isabus="-chardev pty,id=charserial0 \
 #######################
 
 # display="-display sdl"
+display="-nographic"
 
 vga_ram="67108864"
 vga="-vga qxl \

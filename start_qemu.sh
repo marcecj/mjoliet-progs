@@ -68,8 +68,6 @@ miscoptions="-uuid b3932dcf-d95f-6a58-af90-25f857c95787 \
 # pcibus="-device pci-bridge,chassis_nr=1,bus=pcie.0,id=pci.0"
 # pcibus="-device ioh3420 -device i82801b11-bridge"
 
-# disk0="-drive file=/dev/vg0/KVMWinXP,if=none,id=drive-virtio-disk0,format=raw,cache=none,aio=native \
-    # -device virtio-blk-pci,scsi=off,bus=pci.0,addr=0x7,drive=drive-virtio-disk0,id=virtio-disk0"
 disk0="-drive file=/home/marcec/VBoxDrives/WinXPProSP2,if=none,id=drive-virtio-disk0,format=qcow2,cache=writeback,aio=native \
     -device virtio-blk-pci,scsi=off,bus=pci.0,addr=0x7,drive=drive-virtio-disk0,id=virtio-disk0"
 

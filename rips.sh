@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# export CDDB_SERVER="freedb.freedb.org"
+# export CDDB_SERVER="us.cddb.com"
+
 # rip using libparanoia, obtain cddb track info and rip everything into a big
 # WAV file with a cue sheet
 cdda2wav -paranoia -cddb 0 -t all -cuefile

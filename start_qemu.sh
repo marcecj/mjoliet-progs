@@ -82,6 +82,8 @@ disks="$disk0 $disk1 $cdrom"
 net="-netdev tap,script=no,downscript=no,ifname=kvm0,vhost=on,id=hostnet0 \
     -device virtio-net-pci,netdev=hostnet0,id=net0,mac=52:54:00:4e:93:a5,bus=pci.0,addr=0x3"
 
+# sound="-device intel-hda,id=hda0,bus=pci.0,addr=0x4\
+    # -device hda-output,id=sound0"
 sound="-device AC97,id=sound0,bus=pci.0,addr=0x4"
 
 # usb="-device piix3-usb-uhci,id=usb,bus=pci.0,addr=0x1.0x2"

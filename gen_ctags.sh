@@ -16,7 +16,6 @@ searchpaths="/usr/include
              /usr/share/texmf-dist/
              /usr/share/awesome/lib/
              /usr/local/matlab/"
-             # /opt/matlab/"
 
 for path in $searchpaths
 do

@@ -59,10 +59,10 @@ fi
 
 # Save list of URLs.
 # Done via awk magic.
-PUA=($(awk -F"\n" /http:/ $FILE))
+PUA=($(awk -F"\n" /^http:/ $FILE))
 
 # Save line no.s to array for later for-loop awesomeness :D.
-PIA=($(awk -F"\n" '/http:/ {print NR}' $FILE))
+PIA=($(awk -F"\n" '/^http:/ {print NR}' $FILE))
 
 # Count words to set $i_max.
 # Arrays start at 0, so subtract 1 from word count.

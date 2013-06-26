@@ -12,7 +12,7 @@ echo "Will now set max cpu frequency to minimum, to avoid speed problems."
 echo "******************************************\n"
 
 # Old games are too fast on modern computers, so throttle the CPU.
-sudo /usr/bin/cpufreq-set -u 1000MHz
+sudo /usr/bin/cpufreq-set -c 0 -u 1000MHz
 
 echo "Now starting \"$game\", have fun!\n"
 

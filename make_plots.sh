@@ -61,7 +61,7 @@ This program will check for the following filetypes:
   $filetypes
 and convert them to PDF.
 
-If you use gnuplot, you have to choices:
+If you use gnuplot, you have two choices:
     1.)	  Let this script do the conversion for you.  "sed" is used to change
       any lines containing "set term" to "set term pdf enhanced color".
     2.)	  Run gnuplot yourself.  In this case, it may be useful to pass the
@@ -136,7 +136,7 @@ done
 if [ "${program_not_found:-0}" -gt "0" ]; then
     echo "\nA program wasn't found at least $program_not_found time(s), make sure"
     echo "you have the following programs installed and in your \$PATH:"
-    echo "gnuplot, epstopdf, ps2pdf[14] convert and ipetoipe."
+    echo "gnuplot, epstopdf, ps2pdf[14], inkscape and ipetoipe."
 fi
 
 echo "\nDone!"

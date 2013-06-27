@@ -1,7 +1,7 @@
 #!/bin/sh
 
 print_help() {
-    echo "$0: prints id3 tags to STDOUT in an OGG Vorbis Comment compatible format."
+    echo "$(basename $0): prints id3 tags to STDOUT in an OGG Vorbis Comment compatible format."
     echo
     echo "When a tag has no Vorbis Comment equivalent, it is exported verbatim. Pictures are currently not exported."
     echo "If the second argument is a file, metaflac is called on the file instead of printing tags."

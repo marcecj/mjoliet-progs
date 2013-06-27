@@ -1,7 +1,5 @@
 #!/bin/sh
 
-# TODO: replace temp files with sed solution
-
 print_help() {
     echo \
 "Usage:

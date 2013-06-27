@@ -3,8 +3,9 @@
 # This small script uses qcheck to find missing files and qfile to find the
 # associated packages. It prints out the resulting list of packages.
 
-# NOTETOSELF: For "qcheck -a", this would be so much faster and elegant if it would remember the
-# current package and check if lines under it include the string "AFK".
+# NOTE: For "qcheck -a", this would be so much faster and elegant if it would
+# remember the current package and check if lines under it include the string
+# "AFK".
 
 COUNTER=1
 TMP_COUNTER=1

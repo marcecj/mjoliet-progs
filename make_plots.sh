@@ -14,45 +14,6 @@
 # This script makes use of Parameter Expansion, see 'man bash' for info if it
 # hinders your ability to read the script.
 
-# CHANGELOG:
-#
-# 20.04.2008:
-#   Make it a bit more intelligent
-# 08.07.2008:
-#   added postscript for completions sake
-# 04.08.2008:
-#   Rewrote it to use switch/case, which is a) easier to read, b) more compact
-#   and c) easier to further edit (i.e. add support for new filetypes).
-#   Furthermore it now skips unaltered files. I also added a descrition and
-#   -h/--help options.
-# 06.08.2008
-#   Added support for SVG, since 'convert' can convert it.
-#   Also did a bit of cleanup.
-# 07.08.2008
-#   Yeah, changed the help output to be more legible. It was butt-ugly before...
-# 10.09.2008
-#   Fixed a small bug when creating the array $FILES (add a space up front)
-# 16.11.2008
-#   Made directory optional as first argument, default is current directory.
-# 04.12.2008
-#   Added --exact option to epstopdf, which might fix papersize problems with
-#   some EPS files
-# unknown
-#   removed --exact option again, since it brought new problems to the table
-# 15.03.2009
-#   removed superfluous comments
-# 15.06.2009
-#   added IPE support
-#   changed gnuplot case to use sed to change terminal type to pdf automatically
-# 16.06.2009
-#   added --no-gnuplot option for ignoring gnuplot scripts
-#   now uses getopt(1) for option parsing
-# 30.06.2009
-#   made POSIX compatible
-# 03.02.2011
-#   convert all local variables to lower-case
-#   support file names with spaces
-
 filetypes="ps eps gpi svg ipe"
 
 print_help() {

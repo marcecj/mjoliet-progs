@@ -6,6 +6,8 @@
 # NOTE: For "qcheck -a", this would be so much faster and elegant if it would
 # remember the current package and check if lines under it include the string
 # "AFK".
+#
+# TODO: rewrite in POSIX Shell
 
 COUNTER=1
 TMP_COUNTER=1

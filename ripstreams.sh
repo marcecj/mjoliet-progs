@@ -3,7 +3,7 @@
 print_usage() {
     cat <<- EOF
 Usage:
-  $(basename $0) playlist.m3u [output_directory]
+  $(basename $0) playlist.m3u [output_directory] [streamripper_flags [streamripper_flags]]
 EOF
 exit
 }
@@ -16,19 +16,23 @@ then
     exit
 fi
 
-fname="$1"
-if [ ! -r "$fname" ]
+if [ -r "$1" ]
 then
+    fname="$1"; shift
+else
     print_usage
 fi
 
-if [ -d "$2" ]
+if [ -d "$1" ]
 then
-    dir="$2"
+    dir="$1"; shift
 else
     dir="$HOME"
     echo "*** Not a directory, or no directory given. Will save stream to $HOME instead.\n"
 fi
+
+# any leftover arguments are passed to streamripper verbatim
+streamripper_flags="$@"
 
 grep ^http: $fname | {
 k=1
@@ -48,6 +52,6 @@ read -p "Please type in the number of the station you want to rip: " choice <&1
 
 url=$(echo $urls | head -n$choice | tail -n1 | tr '\r\n' '\0')
 
-echo "$streamripper $url -T -d $dir\n"
-$streamripper $url -T -d $dir
+echo "$streamripper $url -T -d $dir $streamripper_flags\n"
+$streamripper $url -T -d $dir $streamripper_flags
 }

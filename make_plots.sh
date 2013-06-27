@@ -10,9 +10,6 @@
 # Note that for gnuplot sed is used to filter lines containing "set term"
 # without pdf and changes them to "set term pdf enhanced color".  If you run
 # gnuplot yourself, you can pass the option "--no-gnuplot".
-#
-# This script makes use of Parameter Expansion, see 'man bash' for info if it
-# hinders your ability to read the script.
 
 filetypes="ps eps gpi svg ipe"
 

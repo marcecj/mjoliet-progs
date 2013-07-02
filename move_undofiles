@@ -3,7 +3,7 @@
 undofiles_path="${HOME}/.vim/undofiles"
 print_usage() {
     cat <<- EOF
-    $(basename $0) [-u <undodir>] [-p] [-h] [<dir>]
+    $(basename $0) [-u <undodir>] [-p] [-h] <dir>
 
     This script removes vim undo files that are stored alongside their
     corresponding file into a central vim undo directory.  In doing so it

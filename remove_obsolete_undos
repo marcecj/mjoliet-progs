@@ -1,7 +1,7 @@
 #!/bin/sh
 
-undofiles_path="${HOME}/.vim/undofiles/"
-keep_file="${undofiles_path}.keep"
+undofiles_path="${HOME}/.vim/undofiles"
+keep_file="${undofiles_path}/.keep"
 
 print_usage() {
     cat <<- EOF
@@ -11,7 +11,8 @@ print_usage() {
     anymore.  The undo files must be stored centrally in one "undodir".
 
     Options:
-     -u           The path to "undodir" (default: ${undofiles_path}).
+     -u           The path to "undodir" (without a trailing slash; default:
+                  ${undofiles_path}).
      -p           Only display what would be done (pretend).
      -h           Display this help text.
 EOF
@@ -39,7 +40,7 @@ find "${undofiles_path}" -type f | while read undo_file
 do
     edited_file="$(echo ${undo_file} | sed s:^./::)"
     edited_file="$(echo ${edited_file} | sed s:%:/:g)"
-    edited_file="$(echo ${edited_file} | sed s:"${undofiles_path}"::)"
+    edited_file="$(echo ${edited_file} | sed s:"${undofiles_path}/"::)"
 
     if [ ! -e "${edited_file}" -a "${undo_file}" != "${keep_file}" ]
     then

@@ -1,0 +1,66 @@
+#!/bin/sh
+
+undofiles_path="${HOME}/.vim/undofiles"
+print_usage() {
+    cat <<- EOF
+    $(basename $0) [-u <undodir>] [-p] [-h] [<dir>]
+
+    This script removes vim undo files that are stored alongside their
+    corresponding file into a central vim undo directory.  In doing so it
+    performs the necessary file name transformation.
+
+    Options:
+     -u           The path to "undodir" (without a trailing slash; default:
+                  ${undofiles_path}).
+     -p           Only display what would be done (pretend).
+     -h           Display this help text.
+EOF
+    exit
+}
+
+while getopts u:ph a;
+do
+    case $a in
+        u) undofiles_path="$OPTARG";;
+        p) pretend=1;;
+        h) print_usage;;
+        *) echo "\nUsage:\n"
+            print_usage;;
+    esac
+done
+shift $(expr $OPTIND - 1)
+
+search_dir="$1"
+if [ "${search_dir}" = "." ]
+then
+    search_dir="$(pwd)"
+elif [ ! -d "${search_dir}" ]
+then
+    echo "Directory \"${search_dir}\" does not exist!"
+    echo
+    echo "Useage:"
+    print_usage
+fi
+
+if [ -n "${pretend}" ]
+then
+    echo "I would do the following:"
+fi
+
+find "${search_dir}" -type f -iname .\*.un\*|while read f
+do
+    new_f=$(echo "${f}" | sed s:/:%:g);
+    new_f=$(echo "${new_f}" | sed s:.un\~$::g);
+    new_f=$(echo "${new_f}" | sed s:"\(.*\)%.\(.*\)":\\1\%\\2:);
+    new_f="${undofiles_path}/${new_f}"
+
+    # support subsequent calls in case of failure
+    if [ ! -f "${new_f}" ];
+    then
+        echo "Moving \"${f}\" -> \"$new_f"\"
+        if [ -z "${pretend}" ]
+        then
+            mv -i "${f}" "${new_f}"
+        fi
+    fi
+done

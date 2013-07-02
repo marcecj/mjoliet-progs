@@ -1,0 +1,52 @@
+#!/bin/sh
+
+undofiles_path="${HOME}/.vim/undofiles/"
+keep_file="${undofiles_path}.keep"
+
+print_usage() {
+    cat <<- EOF
+    $(basename $0) [-u <undodir>] [-p] [-h]
+
+    This script removes vim undo files that do not have a correspdoning file
+    anymore.  The undo files must be stored centrally in one "undodir".
+
+    Options:
+     -u           The path to "undodir" (default: ${undofiles_path}).
+     -p           Only display what would be done (pretend).
+     -h           Display this help text.
+EOF
+    exit
+}
+
+while getopts u:ph a;
+do
+    case $a in
+        u) undofiles_path="$OPTARG";;
+        p) pretend=1;;
+        h) print_usage;;
+        *) echo "\nUsage:\n"
+            print_usage;;
+    esac
+done
+shift $(expr $OPTIND - 1)
+
+if [ -n "${pretend}" ]
+then
+    echo "I would do the following:"
+fi
+
+find "${undofiles_path}" -type f | while read undo_file
+do
+    edited_file="$(echo ${undo_file} | sed s:^./::)"
+    edited_file="$(echo ${edited_file} | sed s:%:/:g)"
+    edited_file="$(echo ${edited_file} | sed s:"${undofiles_path}"::)"
+
+    if [ ! -e "${edited_file}" -a "${undo_file}" != "${keep_file}" ]
+    then
+        echo "Removing obsolete undo file \"${undo_file}\""
+        if [ -z "${pretend}" ]
+        then
+            rm "${undo_file}"
+        fi
+    fi
+done

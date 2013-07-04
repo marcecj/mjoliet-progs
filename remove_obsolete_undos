@@ -1,7 +1,6 @@
 #!/bin/sh
 
 undofiles_path="${HOME}/.vim/undofiles"
-keep_file="${undofiles_path}/.keep"
 
 print_usage() {
     cat <<- EOF
@@ -30,6 +29,10 @@ do
     esac
 done
 shift $(expr $OPTIND - 1)
+
+# I have a keep file in undodir so that git keeps the directory, since vim
+# doesn't automatically create the directory.
+keep_file="${undofiles_path}/.keep"
 
 if [ -n "${pretend}" ]
 then

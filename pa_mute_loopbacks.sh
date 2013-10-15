@@ -23,55 +23,54 @@ do
     esac
 done
 
+# This function limits the output of "pactl list source-outputs" to those lines
+# belonging to the stream whose index matches the function's argument.
+print_info() {
+    index=$1
+    echo_output=
+
+    # set IFS to null so that the read lines retain their preceding whitespace
+    local IFS=
+
+    pactl list source-outputs | while read l;
+    do
+        if [ -n "$(echo $l|grep \#$index)" ];
+        then
+            echo_output=1
+        elif [ -n "$echo_output" -a -n "$(echo $l|grep '^Source')" ];
+        then
+            echo_output=
+        fi
+
+        if [ -n "$echo_output" ];
+        then
+            echo "    $l"
+        else
+            continue
+        fi
+    done
+}
+
 num_loopbacks=0
-pacmd list-source-outputs | grep "\(index\|driver\|media.name\|muted\)" | {
+pactl list short source-outputs | grep module-loopback | {
 while read l;
 do
-    if [ -n "$(echo $l|grep index)" ];
+    index=$(echo $l|cut -d' ' -f1)
+
+    num_loopbacks=$(($num_loopbacks+1))
+
+    if [ -n "$verbose" ];
     then
-        index=$(echo $l|cut -d' ' -f2)
-        driver=
-        muted=
-        name=
-        continue
-    elif [ -n "$(echo $l|grep driver)" ];
-    then
-        driver=$(echo $l|cut -d\= -f2)
-        continue
-    elif [ -n "$(echo $l|grep muted)" ];
-    then
-        muted=$(echo $l|cut -d' ' -f2)
-        continue
-    elif [ -n "$(echo $l|grep media.name)" ];
-    then
-        name=$(echo $l|sed -e 's:.* = "\(.*\)":\1:g')
+        echo "Loopback device #$num_loopbacks:"
+        print_info $index
+        echo
     fi
 
-    if [ -n "$(echo $driver | grep loopback)" ];
-    then
-        num_loopbacks=$(($num_loopbacks+1))
-
-        if [ -n "$verbose" ];
-        then
-            if [ "$muted" = "no" ]; then
-                action=mute
-            else
-                action=unmute
-            fi
-
-            echo "Found loop-back device to $action:"
-            echo "  Index:  $index"
-            echo "  Driver: $driver"
-            echo "  Name:   $name"
-            echo "  Muted:  $muted"
-        fi
-
-        pa_cmd="pactl set-source-output-mute $index toggle"
-        if [ -n "$dry_run" ]; then
-            echo Would execute \"$pa_cmd\"
-        else
-            eval "$pa_cmd"
-        fi
+    pa_cmd="pactl set-source-output-mute $index toggle"
+    if [ -n "$dry_run" ]; then
+        echo "$pa_cmd"
+    else
+        eval "$pa_cmd"
     fi
 done
 

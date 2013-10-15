@@ -4,6 +4,8 @@ print_help() {
     cat <<- EOF
     $(basename $0): toggles the mute status of pulseaudio loopback outputs.
 
+    This command returns 1 when there are no loopback outputs.
+
     Options:
      -d         Echo the command instead of executing it ("dry run").
      -v         Print more information on the source-output(s) being modified.
@@ -21,7 +23,9 @@ do
     esac
 done
 
-pacmd list-source-outputs | grep "\(index\|driver\|media.name\|muted\)" | while read l;
+num_loopbacks=0
+pacmd list-source-outputs | grep "\(index\|driver\|media.name\|muted\)" | {
+while read l;
 do
     if [ -n "$(echo $l|grep index)" ];
     then
@@ -45,6 +49,8 @@ do
 
     if [ -n "$(echo $driver | grep loopback)" ];
     then
+        num_loopbacks=$(($num_loopbacks+1))
+
         if [ -n "$verbose" ];
         then
             if [ "$muted" = "no" ]; then
@@ -68,3 +74,10 @@ do
         fi
     fi
 done
+
+if [ "$num_loopbacks" -eq 0 ];
+then
+    echo "No loopback streams found!" >&2
+    return 1
+fi
+}

@@ -23,19 +23,29 @@ do
     esac
 done
 
+if [ -n "$verbose" ];
+then
+    # get the output of pactl; append a single line containing "Source" in case
+    # the last entry is one of the loopback streams, so that bc doesn't fail
+    pactl_out="$(pactl list source-outputs)\nSource"
+fi
+
 # This function limits the output of "pactl list source-outputs" to those lines
 # belonging to the stream whose index matches the function's argument.
 print_info() {
     index=$1
 
-    num_lines=$(pactl list source-outputs \
+    # change $IFS so that the pipe operates line-wise when using echo
+    local IFS='\n'
+
+    num_lines=$(echo "$pactl_out" \
         | grep --line-number '^Source' \
         | grep -A1 "#$index" \
         | cut -d: -f1 | tac | tr '\n' ' ' \
         | xargs printf "%s - %s - 2\n" \
         | bc)
 
-    pactl list source-outputs \
+    echo "$pactl_out" \
         | grep -A$num_lines "#$index" \
         | sed s:"\(.*\)":"\t\1":
 }

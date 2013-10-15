@@ -21,13 +21,14 @@ do
     esac
 done
 
-pacmd list-source-outputs | grep "\(index\|driver\|muted\)" | while read l;
+pacmd list-source-outputs | grep "\(index\|driver\|media.name\|muted\)" | while read l;
 do
     if [ -n "$(echo $l|grep index)" ];
     then
         index=$(echo $l|cut -d' ' -f2)
         driver=
         muted=
+        name=
         continue
     elif [ -n "$(echo $l|grep driver)" ];
     then
@@ -36,6 +37,10 @@ do
     elif [ -n "$(echo $l|grep muted)" ];
     then
         muted=$(echo $l|cut -d' ' -f2)
+        continue
+    elif [ -n "$(echo $l|grep media.name)" ];
+    then
+        name=$(echo $l|sed -e 's:.* = "\(.*\)":\1:g')
     fi
 
     if [ -n "$(echo $driver | grep loopback)" ];
@@ -51,6 +56,7 @@ do
             echo "Found loop-back device to $action:"
             echo "  Index:  $index"
             echo "  Driver: $driver"
+            echo "  Name:   $name"
             echo "  Muted:  $muted"
         fi
 

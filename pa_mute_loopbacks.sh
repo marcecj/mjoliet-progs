@@ -38,12 +38,11 @@ print_info() {
     # change $IFS so that the pipe operates line-wise when using echo
     local IFS='\n'
 
-    num_lines=$(echo "$pactl_out" \
+    num_lines=$(($(echo "$pactl_out" \
         | grep --line-number '^Source' \
         | grep -A1 "#$index" \
         | cut -d: -f1 | tac | tr '\n' ' ' \
-        | xargs printf "%s - %s - 2\n" \
-        | bc)
+        | xargs printf "%s - %s - 2")))
 
     echo "$pactl_out" \
         | grep -A$num_lines "#$index" \

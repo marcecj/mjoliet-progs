@@ -34,19 +34,15 @@ print_info() {
 
     pactl list source-outputs | while read l;
     do
-        if [ -n "$(echo $l|grep \#$index)" ];
-        then
-            echo_output=1
-        elif [ -n "$echo_output" -a -n "$(echo $l|grep '^Source')" ];
-        then
-            echo_output=
+        if [ -n "$echo_output" ]; then
+            echo $l|grep -q '^Source' && echo_output=
+        else
+            echo $l|grep -q \#"$index" && echo_output=1
         fi
 
         if [ -n "$echo_output" ];
         then
             echo "    $l"
-        else
-            continue
         fi
     done
 }

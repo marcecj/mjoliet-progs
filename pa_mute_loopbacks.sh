@@ -27,24 +27,17 @@ done
 # belonging to the stream whose index matches the function's argument.
 print_info() {
     index=$1
-    echo_output=
 
-    # set IFS to null so that the read lines retain their preceding whitespace
-    local IFS=
+    num_lines=$(pactl list source-outputs \
+        | grep --line-number '^Source' \
+        | grep -A1 "#$index" \
+        | cut -d: -f1 | tac | tr '\n' ' ' \
+        | xargs printf "%s - %s - 2\n" \
+        | bc)
 
-    pactl list source-outputs | while read l;
-    do
-        if [ -n "$echo_output" ]; then
-            echo $l|grep -q '^Source' && echo_output=
-        else
-            echo $l|grep -q \#"$index" && echo_output=1
-        fi
-
-        if [ -n "$echo_output" ];
-        then
-            echo "    $l"
-        fi
-    done
+    pactl list source-outputs \
+        | grep -A$num_lines "#$index" \
+        | sed s:"\(.*\)":"\t\1":
 }
 
 num_loopbacks=0

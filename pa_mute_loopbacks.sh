@@ -2,13 +2,13 @@
 
 print_help() {
     cat <<- EOF
-    $(basename $0): toggles the mute status of pulseaudio loopback outputs.
+    $(basename $0): toggles the mute status of pulseaudio loopback streams.
 
-    This command returns 1 when there are no loopback outputs.
+    This command returns 1 when there are no loopback streams.
 
     Options:
-     -d         Echo the command instead of executing it ("dry run").
-     -v         Print more information on the source-output(s) being modified.
+     -d         Print the commands to be executed, do not run them ("dry run").
+     -v         Print more information on the loopback stream(s) ("verbose").
      -h         Display this help text.
 EOF
     exit

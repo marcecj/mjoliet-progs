@@ -12,4 +12,4 @@ out_pattern='@artist - {@year - }@album/@track - @title.@ext'
 flac_opts="-8V"
 
 # split the wav file into multiple tagged FLAC files; force bash due to bashisms
-bash $(which split2flac.sh) audio.wav -cue audio.cue -e "$flac_opts" -of "$out_pattern"
+split2flac.sh audio.wav -cue audio.cue -e "$flac_opts" -of "$out_pattern"

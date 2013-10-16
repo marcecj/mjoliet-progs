@@ -49,21 +49,26 @@ print_info() {
         | sed s:"\(.*\)":"\t\1":
 }
 
-num_loopbacks=0
-pactl list short source-outputs | grep module-loopback | {
-while read l;
+indices=$(pactl list short source-outputs | grep module-loopback | cut -f1)
+
+num_loopbacks=$(echo $indices | wc -w)
+if [ "$num_loopbacks" -eq 0 ];
+then
+    echo "No loopback streams found!" >&2
+    return 1
+fi
+
+if [ -n "$verbose" ];
+then
+    for l in $(seq $num_loopbacks)
+    do
+        index=$(echo $indices|cut -d' ' -f$l)
+        echo "Loopback device #$l:\n$(print_info $index)\n"
+    done
+fi
+
+for index in $indices;
 do
-    index=$(echo $l|cut -d' ' -f1)
-
-    num_loopbacks=$(($num_loopbacks+1))
-
-    if [ -n "$verbose" ];
-    then
-        echo "Loopback device #$num_loopbacks:"
-        print_info $index
-        echo
-    fi
-
     pa_cmd="pactl set-source-output-mute $index toggle"
     if [ -n "$dry_run" ]; then
         echo "$pa_cmd"
@@ -71,10 +76,3 @@ do
         eval "$pa_cmd"
     fi
 done
-
-if [ "$num_loopbacks" -eq 0 ];
-then
-    echo "No loopback streams found!" >&2
-    return 1
-fi
-}

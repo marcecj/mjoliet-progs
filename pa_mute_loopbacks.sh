@@ -26,7 +26,7 @@ done
 if [ -n "$verbose" ]
 then
     # get the output of pactl; append a single line containing "Source" in case
-    # the last entry is one of the loopback streams, so that bc doesn't fail
+    # the last entry is a loopback stream, so that calculation doesn't fail
     pactl_out="$(pactl list source-outputs)\nSource"
 fi
 

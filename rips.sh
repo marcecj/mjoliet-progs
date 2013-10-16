@@ -11,5 +11,5 @@ cdda2wav -paranoia -cddb 0 -t all -cuefile
 out_pattern='@artist - {@year - }@album/@track - @title.@ext'
 flac_opts="-8V"
 
-# split the wav file into multiple tagged FLAC files; force bash due to bashisms
+# split the wav file into multiple tagged FLAC files
 split2flac.sh audio.wav -cue audio.cue -e "$flac_opts" -of "$out_pattern"

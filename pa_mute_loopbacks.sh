@@ -14,7 +14,7 @@ EOF
     exit
 }
 
-while getopts hdv a;
+while getopts hdv a
 do
     case $a in
         h) print_help;;
@@ -23,7 +23,7 @@ do
     esac
 done
 
-if [ -n "$verbose" ];
+if [ -n "$verbose" ]
 then
     # get the output of pactl; append a single line containing "Source" in case
     # the last entry is one of the loopback streams, so that bc doesn't fail
@@ -52,13 +52,13 @@ print_info() {
 indices=$(pactl list short source-outputs | grep module-loopback | cut -f1)
 
 num_loopbacks=$(echo $indices | wc -w)
-if [ "$num_loopbacks" -eq 0 ];
+if [ "$num_loopbacks" -eq 0 ]
 then
     echo "No loopback streams found!" >&2
     return 1
 fi
 
-if [ -n "$verbose" ];
+if [ -n "$verbose" ]
 then
     for l in $(seq $num_loopbacks)
     do
@@ -67,7 +67,7 @@ then
     done
 fi
 
-for index in $indices;
+for index in $indices
 do
     pa_cmd="pactl set-source-output-mute $index toggle"
     if [ -n "$dry_run" ]; then

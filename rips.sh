@@ -15,4 +15,4 @@ flac_opts="-8V"
 split2flac_opts="-cue audio.cue -cuecharset latin1"
 
 # split the wav file into multiple tagged FLAC files
-split2flac.sh audio.wav $split2flac_opts -e "$flac_opts" -of "$out_pattern"
+split2flac audio.wav $split2flac_opts -e "$flac_opts" -of "$out_pattern"

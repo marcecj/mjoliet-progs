@@ -71,13 +71,10 @@ miscoptions="-uuid b3932dcf-d95f-6a58-af90-25f857c95787 \
 disk0="-drive file=/home/marcec/VBoxDrives/WinXPProSP2,if=none,id=drive-virtio-disk0,format=qcow2,cache=writeback,aio=native \
     -device virtio-blk-pci,scsi=off,bus=pci.0,addr=0x7,drive=drive-virtio-disk0,id=virtio-disk0"
 
-disk1="-drive file=/home/marcec/VBoxDrives/NewHardDisk1.img,if=none,id=drive-virtio-disk2,format=qcow2,cache=writeback,aio=native \
-    -device virtio-blk-pci,scsi=off,bus=pci.0,addr=0x9,drive=drive-virtio-disk2,id=virtio-disk2"
-
 cdrom="-drive if=none,id=drive-ide0-1-0,readonly=on,format=raw \
     -device ide-cd,bus=ide.1,unit=0,drive=drive-ide0-1-0,id=ide0-1-0"
 
-disks="$disk0 $disk1 $cdrom"
+disks="$disk0 $cdrom"
 
 net="-netdev tap,script=no,downscript=no,ifname=kvm0,id=hostnet0 \
     -device virtio-net-pci,netdev=hostnet0,id=net0,mac=52:54:00:4e:93:a5,bus=pci.0,addr=0x3"

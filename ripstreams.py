@@ -4,6 +4,7 @@ import os
 import argparse
 from subprocess import check_call
 
+
 def get_line_pairs(fname):
 
     lines = []
@@ -26,27 +27,27 @@ if __name__ == '__main__':
 
     parser.add_argument(
         "playlist",
-        metavar  = "playlist.m3u",
-        help     = "An M3U playlist with some stream URLs in it."
+        metavar="playlist.m3u",
+        help="An M3U playlist with some stream URLs in it."
     )
 
     parser.add_argument(
         "directory",
-        nargs   = '?',
-        default = os.path.expanduser("~"),
-        help    = "The directory in which to store the rip."
+        nargs='?',
+        default=os.path.expanduser("~"),
+        help="The directory in which to store the rip."
     )
 
     args, streamripper_flags = parser.parse_known_args()
 
     line_pairs = get_line_pairs(args.playlist)
 
-    for i,l in enumerate(line_pairs):
+    for i, l in enumerate(line_pairs):
         title, url = l
         title = title.partition(',')[-1]
         print("{:>2}.) {}\n     {}\n".format(i+1, title, url))
 
-    choice = int(input("Please type in the number of the station you want to rip: "))-1
+    choice = int(input("Type in the number of the station to rip: ")) - 1
     url = line_pairs[choice][1]
 
     try:

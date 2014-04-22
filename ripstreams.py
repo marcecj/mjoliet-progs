@@ -2,7 +2,7 @@
 
 import os
 import argparse
-from subprocess import check_call
+from subprocess import check_call, CalledProcessError
 
 
 def get_line_pairs(fname):

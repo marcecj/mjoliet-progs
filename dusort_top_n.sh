@@ -38,7 +38,7 @@ fi
 
 lscommand="find \"$dir\" $findopts"
 echo "Directory is \"$dir\""
-echo "Command is \"$lscommand\""
+echo "Command is: $lscommand"
 echo
 
 # List files, one step per line:

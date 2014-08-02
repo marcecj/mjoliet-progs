@@ -16,14 +16,14 @@ EOF
 }
 
 n=20
-lsopts="-1"
+findopts="-maxdepth 1 -mindepth 1"
 duopts="--files0-from=- -hsc"
 
 while getopts n:dh a;
 do
     case $a in
         n) n=$OPTARG;;
-        d) lsopts="$lsopts -A --ignore=\"[^\.]*\"";;
+        d) findopts="$findopts -iname .\*";;
         h) print_usage;;
         *) echo "\nUsage:\n"
             print_usage;;
@@ -36,7 +36,7 @@ if [ -n "$1" ]; then
     dir="$1"
 fi
 
-lscommand="/bin/ls $lsopts $dir"
+lscommand="find \"$dir\" $findopts"
 echo "Directory is \"$dir\""
 echo "Command is \"$lscommand\""
 echo
@@ -46,7 +46,7 @@ echo
 # 2.) first pass through du, sort output
 # 3.) grab the top $n files, null-delimited
 # 4.) second pass through du
-eval $lscommand | tr "\n" "\0" \
+eval $lscommand -print0 \
 | du $duopts 2>/dev/null | sort -hr \
 | head -n$(($n+1)) | tail -n$n | cut -f2 | tr "\n" "\0" \
 | du $duopts 2>/dev/null

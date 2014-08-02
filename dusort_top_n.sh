@@ -9,7 +9,7 @@ print_usage() {
 
     Options:
      -n <num>     Print top <num> entries (default: 20).
-     -d           Only print dotfiles.
+     -o           Extra options passed to "find".
      -h           Display this help text.
 EOF
     exit
@@ -19,11 +19,11 @@ n=20
 findopts="-maxdepth 1 -mindepth 1"
 duopts="--files0-from=- -hsc"
 
-while getopts n:dh a;
+while getopts n:o:h a;
 do
     case $a in
         n) n=$OPTARG;;
-        d) findopts="$findopts -iname .\*";;
+        o) findopts="$findopts $OPTARG";;
         h) print_usage;;
         *) echo "\nUsage:\n"
             print_usage;;

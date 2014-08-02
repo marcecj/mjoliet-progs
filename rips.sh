@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# export CDDB_SERVER="freedb.freedb.org"
-# export CDDB_SERVER="us.cddb.com"
+# export CDDBP_SERVER="freedb.freedb.org"
+# export CDDBP_SERVER="us.cddb.com"
 
 # rip using libparanoia, obtain cddb track info and rip everything into a big
 # WAV file with a cue sheet

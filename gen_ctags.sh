@@ -1,10 +1,8 @@
 #!/bin/sh
 
 # Copyright (c) 2008-2011 Marc Joliet
-
-# Update ctags files for each language.
-# This isn't as slow a motherfucker of a script as I had anticipated.
-# I did, however, need an enormous $TMPDIR for sorting the C++ tags file.
+#
+# Creates ctags files for several languages.
 
 LANGUAGES="C Make Python Sh tex Vim Lua matlab"
 searchpaths="/usr/include

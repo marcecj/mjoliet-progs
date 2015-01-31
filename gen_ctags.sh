@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright (c) 2008-2011 Marc Joliet
+# Copyright (c) 2008-2015 Marc Joliet
 #
 # Creates ctags files for several languages.
 

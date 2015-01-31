@@ -3,7 +3,7 @@
 DIRS="/home/marcec/Media
 /home/marcec/Music
 /home/marcec/Other"
-TARGET="/media/TOSHIBA EXT/marcec/"
+TARGET="/media/MARCEC_BACKUP/Informal/"
 RSYNC_OPTIONS="-aX --exclude=lost+found/ --delete --delete-excluded --numeric-ids"
 
 if [ ! -d "$TARGET" ];

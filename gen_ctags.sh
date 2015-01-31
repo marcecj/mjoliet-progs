@@ -8,10 +8,8 @@
 
 # LANGUAGES="C Make Python Sh latex Vim Verilog Lua matlab"
 LANGUAGES="C Make Python Sh tex Vim Verilog Lua matlab"
-# add cpp_src for std namespace completion
 searchpaths="/usr/include
              /usr/local/include
-             $HOME/.vim/tags/cpp_src/
              /usr/lib/python*/
              /usr/share/texmf-dist/
              /usr/share/awesome/lib/

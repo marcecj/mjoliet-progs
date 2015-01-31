@@ -6,7 +6,7 @@
 # This isn't as slow a motherfucker of a script as I had anticipated.
 # I did, however, need an enormous $TMPDIR for sorting the C++ tags file.
 
-LANGUAGES="C Make Python Sh tex Vim Verilog Lua matlab"
+LANGUAGES="C Make Python Sh tex Vim Lua matlab"
 searchpaths="/usr/include
              /usr/local/include
              /usr/lib/python*/

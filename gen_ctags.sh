@@ -6,7 +6,6 @@
 # This isn't as slow a motherfucker of a script as I had anticipated.
 # I did, however, need an enormous $TMPDIR for sorting the C++ tags file.
 
-# LANGUAGES="C Make Python Sh latex Vim Verilog Lua matlab"
 LANGUAGES="C Make Python Sh tex Vim Verilog Lua matlab"
 searchpaths="/usr/include
              /usr/local/include
@@ -22,9 +21,6 @@ do
         searchpaths=$(echo $searchpaths | sed s:"$path"::g)
     fi
 done
-
-# This should hopefully expand to complete everything
-# searchpaths+=" $(echo /usr/lib/gcc/x86_64-pc-linux-gnu/*/include)"
 searchpaths="${searchpaths} $(gcc-config -L | cut -d: -f1)"
 
 ctagspath=~/.vim/tags/
@@ -48,14 +44,9 @@ options="-R --append=no --sort=foldcase --c-kinds=$ckinds --c++-kinds=$cppkinds 
 echo "I am going to search in\n$(echo ${searchpaths} | tr ' ' '\n') and save the tag files in ${ctagspath}!\n"
 echo "I will use the following options: ${options}\n"
 
-# NOTE: a dirty hack: since the C++ tags take up so much RAM, use the already
-# enormous $PORTAGE_TMPDIR
-#export TMPDIR="/var/tmp/portage/"
-
 for lang in $LANGUAGES; do
   echo "Generating ctags for $lang..."
   /usr/bin/ctags $options --languages=$lang -f $ctagspath$(echo $lang | tr + p).tag $searchpaths
 done
 
 echo "Done!"
-#EOF

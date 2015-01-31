@@ -19,9 +19,12 @@ do
     if [ ! -d $path ]; then
         echo "Ignoring path '$path'"
         searchpaths=$(echo $searchpaths | sed s:"$path"::g)
+        ignoredpath=1
     fi
 done
 searchpaths="${searchpaths} $(gcc-config -L | cut -d: -f1)"
+
+[ "$ignoredpath" ] && echo
 
 ctagspath=~/.vim/tags/
 
@@ -41,7 +44,7 @@ fi
 # Maybe add "--sort=foldcase"? Problem: vim requires "ignorecase".
 options="-R --append=no --sort=foldcase --c-kinds=$ckinds --c++-kinds=$cppkinds --python-kinds=$pythonkinds --fields=+iaS --extra=+q"
 
-echo "I am going to search in\n$(echo ${searchpaths} | tr ' ' '\n') and save the tag files in ${ctagspath}!\n"
+echo "I am going to search in\n\n$(echo ${searchpaths} | tr ' ' '\n' | sed 's:\(.*\):\t\1:g')\n\nand save the tag files in ${ctagspath}.\n"
 echo "I will use the following options: ${options}\n"
 
 for lang in $LANGUAGES; do

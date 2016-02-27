@@ -2,7 +2,7 @@
 
 print_usage() {
     cat <<- EOF
-    $(basename $0) [-n <num>] [-d] [-h] [<dir>]
+    $(basename $0) [-n <num>] [-o] [-h] [<dir>]
 
     This program prints the largest <num> regular files/directories
     in the current directory. <dir> defaults to the current directory.

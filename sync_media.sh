@@ -8,7 +8,7 @@ RSYNC_OPTIONS="-aX --exclude=lost+found/ --delete --delete-excluded --numeric-id
 
 if [ ! -d "$TARGET" ];
 then
-    echo "Non-existent target!"
+    echo "Non-existent target!" >&2
     exit
 fi
 
@@ -16,7 +16,7 @@ echo "$DIRS" | while read d;
 do
     if [ ! -d "$d" ];
     then
-        echo "Non-existent source!"
+        echo "Non-existent source!" >&2
         exit
     fi
 

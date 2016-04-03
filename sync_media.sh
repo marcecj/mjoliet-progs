@@ -12,6 +12,8 @@ then
     exit
 fi
 
+echo "Target is \"$TARGET\"."
+
 echo "$DIRS" | while read d;
 do
     if [ ! -d "$d" ];

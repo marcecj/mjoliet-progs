@@ -31,7 +31,7 @@ fi
 # loop since the pipes spawn subprocesses that don't affect the parent
 # environment.
 id3info "$file" | grep "===" | sed 's/=== \(.*\) (.*): \(.*\)/\1=\2/g' | {
-while read curtag
+while read -r curtag
 do
     tagname="${curtag%%=*}"
     tagval="${curtag#*=}"

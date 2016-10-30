@@ -37,7 +37,7 @@ streamripper_flags="$@"
 
 grep ^http: "$fname" | {
 k=1
-while read url
+while read -r url
 do
     name=$(grep -B1 "$url" "$fname"|tail -n2|head -n1)
     name=${name#*,}
@@ -49,7 +49,7 @@ do
     k=$((k+1))
 done
 
-read -p "Please type in the number of the station you want to rip: " choice <&1
+read -r -p "Please type in the number of the station you want to rip: " choice <&1
 
 url=$(echo "$urls" | head -n"$choice" | tail -n1 | tr '\r\n' '\0')
 

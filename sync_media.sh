@@ -40,7 +40,7 @@ echo "Target is \"$TARGET\"."
 
 [ $PRETEND -eq 1 ] && echo "Would execute:"
 
-echo "$DIRS" | while read d;
+echo "$DIRS" | while read -r d;
 do
     if [ ! -d "$d" ];
     then

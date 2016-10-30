@@ -62,7 +62,7 @@ fi
 for fileext in $filetypes
 do
     ls -1 "$dir"/*.$fileext 2>/dev/null | \
-    while read fname
+    while read -r fname
     do
         basename="${fname%.*}"
 

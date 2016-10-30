@@ -88,7 +88,7 @@ echo -e "\n"
 
 # read "choice" from stdin
 echo "Please type in number of the station you want to rip:"
-read -e choice
+read -r -e choice
 
 # Now set the URL.
 URL=${PUA[(($choice-1))]}

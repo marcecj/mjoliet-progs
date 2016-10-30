@@ -42,8 +42,14 @@ fi
 # Maybe add "--sort=foldcase"? Problem: vim requires "ignorecase".
 options="-R --append=no --sort=foldcase --c-kinds=$ckinds --c++-kinds=$cppkinds --python-kinds=$pythonkinds --fields=+iaS --extra=+q"
 
-echo "I am going to search in\n\n$(echo ${searchpaths} | tr ' ' '\n' | sed 's:\(.*\):\t\1:g')\n\nand save the tag files in ${ctagspath}.\n"
-echo "I will use the following options: ${options}\n"
+echo "I am going to search in"
+echo
+echo ${searchpaths} | tr ' ' '\n' | sed 's:\(.*\):\t\1:g'
+echo
+echo "and save the tag files in ${ctagspath}."
+echo
+echo "I will use the following options: ${options}"
+echo
 
 for lang in $LANGUAGES; do
   echo "Generating ctags for $lang..."

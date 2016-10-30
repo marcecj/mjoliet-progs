@@ -46,7 +46,7 @@ print_info() {
 
     echo "$pactl_out" \
         | grep -A$num_lines "#$index" \
-        | sed s:"\(.*\)":"\t\1":
+        | sed "s:\(.*\):\t\1:"
 }
 
 indices=$(pactl list short source-outputs | grep module-loopback | cut -f1)
@@ -63,7 +63,9 @@ then
     for l in $(seq $num_loopbacks)
     do
         index=$(echo $indices|cut -d' ' -f$l)
-        echo "Loopback device #$l:\n$(print_info $index)\n"
+        echo "Loopback device #$l:"
+        print_info $index
+        echo
     done
 fi
 

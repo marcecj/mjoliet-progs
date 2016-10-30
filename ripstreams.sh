@@ -28,7 +28,8 @@ then
     dir="$1"; shift
 else
     dir="$HOME"
-    echo "*** Not a directory, or no directory given. Will save stream to $HOME instead.\n"
+    echo "*** Not a directory, or no directory given. Will save stream to $HOME instead."
+    echo
 fi
 
 # any leftover arguments are passed to streamripper verbatim
@@ -44,14 +45,15 @@ do
     urls="$urls$url\n"
     names="$names$name\n"
 
-    echo "${k}.)\t$name\n\t$url\n"
-    k=$(($k+1))
+    printf "%i.)\t%s\n\t%s" "${k}" "$name" "$url"
+    k=$((k+1))
 done
 
 read -p "Please type in the number of the station you want to rip: " choice <&1
 
 url=$(echo $urls | head -n$choice | tail -n1 | tr '\r\n' '\0')
 
-echo "$streamripper $url -T -d $dir $streamripper_flags\n"
+echo "$streamripper $url -T -d $dir $streamripper_flags"
+echo
 $streamripper $url -T -d $dir $streamripper_flags
 }

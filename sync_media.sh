@@ -17,9 +17,9 @@ do
             exit;;
     esac
 done
-shift $(expr $OPTIND - 1)
+shift $((OPTIND - 1))
 
-if [ -z "$REMOTE" -a ! -d "$TARGET" ]
+if [ -z "$REMOTE" ] && [ ! -d "$TARGET" ]
 then
     echo "Non-existent target!" >&2
     exit

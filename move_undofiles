@@ -24,11 +24,11 @@ do
         u) undofiles_path="$OPTARG";;
         p) pretend=1;;
         h) print_usage;;
-        *) echo "\nUsage:\n"
+        *) printf "\nUsage:\n"
             print_usage;;
     esac
 done
-shift $(expr $OPTIND - 1)
+shift $((OPTIND - 1))
 
 search_dir="$1"
 if [ "${search_dir}" = "." ]

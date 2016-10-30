@@ -77,7 +77,7 @@ done
 # Display the options:
 echo -e "These are your choices:\n"
 for k in $(seq 0 $i_max); do
-  echo -e "$(($k+1)).)\t${PLA[$k]}"
+  echo -e "$((k+1)).)\t${PLA[$k]}"
   echo -e "\t${PUA[$k]}\n"
 done
 echo -e "\n"

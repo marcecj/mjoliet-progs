@@ -54,7 +54,7 @@ done
 if [ -d "$1" ]; then
     dir="$1"
 else
-    echo "Directory \"$1\" does not exist, defaulting to current directory.\n"
+    echo "Directory \"$1\" does not exist, defaulting to current directory."
     dir=.
 fi
 
@@ -86,15 +86,17 @@ do
             *) echo "The mute has spoken! Something is amiss... What the hell kind of file is \"$fname\"?"
         esac
         if [ $? -eq "127" ]; then
-            program_not_found=$(($program_not_found + 1))
+            program_not_found=$((program_not_found + 1))
         fi
     done
 done
 
 if [ "${program_not_found:-0}" -gt "0" ]; then
-    echo "\nA program wasn't found at least $program_not_found time(s), make sure"
+    echo
+    echo "A program wasn't found at least $program_not_found time(s), make sure"
     echo "you have the following programs installed and in your \$PATH:"
     echo "gnuplot, epstopdf, ps2pdf[14], inkscape and ipetoipe."
 fi
 
-echo "\nDone!"
+echo
+echo "Done!"

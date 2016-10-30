@@ -25,11 +25,11 @@ do
         n) n=$OPTARG;;
         o) findopts="$findopts $OPTARG";;
         h) print_usage;;
-        *) echo "\nUsage:\n"
+        *) printf "\nUsage:\n"
             print_usage;;
     esac
 done
-shift $(expr $OPTIND - 1)
+shift $((OPTIND - 1))
 
 dir=.
 if [ -n "$1" ]; then
@@ -48,5 +48,5 @@ echo
 # 4.) second pass through du
 eval $lscommand -print0 \
 | du $duopts 2>/dev/null | sort -hr \
-| head -n$(($n+1)) | tail -n$n | cut -f2 | tr "\n" "\0" \
+| head -n$((n+1)) | tail -n$n | cut -f2 | tr "\n" "\0" \
 | du $duopts 2>/dev/null

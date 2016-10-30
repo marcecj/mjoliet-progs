@@ -69,7 +69,7 @@ do
     flactag=
 done
 
-if [ ! -z "$metaflaccmd" -a ! -z "$flacfile" ]
+if [ ! -z "$metaflaccmd" ] && [ ! -z "$flacfile" ]
 then
     # echo metaflac $metaflaccmd "\"$flacfile"\"
     eval metaflac $metaflaccmd "\"$flacfile\""

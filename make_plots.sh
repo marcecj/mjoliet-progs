@@ -61,7 +61,7 @@ fi
 # The filetypes that we list in the current directory.
 for fileext in $filetypes
 do
-    ls -1 "$dir"/*.$fileext 2>/dev/null | \
+    find "$dir" -name "*.$fileext" 2>/dev/null | \
     while read -r fname
     do
         basename="${fname%.*}"

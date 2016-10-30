@@ -59,10 +59,10 @@ fi
 
 # Save list of URLs.
 # Done via awk magic.
-PUA=($(awk -F"\n" /^http:/ $FILE))
+PUA=($(awk -F"\n" /^http:/ "$FILE"))
 
 # Save line no.s to array for later for-loop awesomeness :D.
-PIA=($(awk -F"\n" '/^http:/ {print NR}' $FILE))
+PIA=($(awk -F"\n" '/^http:/ {print NR}' "$FILE"))
 
 # Count words to set $i_max.
 # Arrays start at 0, so subtract 1 from word count.
@@ -71,7 +71,7 @@ i_max=$(($(echo -e ${PUA[@]} | wc -w) - 1))
 
 # Save list of station names to array.
 for k in $(seq 0 $i_max); do
-  PLA[$k]=$(awk -F"," "NR == ((${PIA[$k]}-1)) {print \$2}" $FILE);
+  PLA[$k]=$(awk -F"," "NR == ((${PIA[$k]}-1)) {print \$2}" "$FILE");
 done
 
 # Display the options:
@@ -98,5 +98,5 @@ echo -e "I will now start ripping from $URL and save it in $DIR.\n"
 # 1st argument is the URL
 # 2nd argument is the destination directory
 # For more options, see "man streamripper" (well, duh).
-/usr/bin/streamripper $URL -T -d $DIR
+/usr/bin/streamripper "$URL" -T -d "$DIR"
 #EOF

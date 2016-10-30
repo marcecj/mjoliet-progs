@@ -2,7 +2,7 @@
 
 game="$1"
 
-if [ ! -x "$(which $game)" ]; then
+if [ ! -x "$(which "$game")" ]; then
     echo "\"$game\" not an executable. Quitting."
     exit
 fi
@@ -19,7 +19,7 @@ echo "Now starting \"$game\", have fun!"
 echo
 
 # Run the game on only one core.
-taskset -c 0 $game
+taskset -c 0 "$game"
 
 echo
 echo "******************************************"

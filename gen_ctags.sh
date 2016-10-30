@@ -14,9 +14,9 @@ searchpaths="/usr/include
 
 for path in $searchpaths
 do
-    if [ ! -d $path ]; then
+    if [ ! -d "$path" ]; then
         echo "Ignoring path '$path'"
-        searchpaths=$(echo $searchpaths | sed s:"$path"::g)
+        searchpaths=$(echo "$searchpaths" | sed "s:$path::g")
         ignoredpath=1
     fi
 done
@@ -53,7 +53,7 @@ echo
 
 for lang in $LANGUAGES; do
   echo "Generating ctags for $lang..."
-  /usr/bin/ctags $options --languages=$lang -f $ctagspath$(echo $lang | tr + p).tag $searchpaths
+  /usr/bin/ctags $options --languages="$lang" -f "$ctagspath$(echo "$lang" | tr + p)".tag $searchpaths
 done
 
 echo "Done!"

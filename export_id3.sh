@@ -1,7 +1,7 @@
 #!/bin/sh
 
 print_help() {
-    echo "$(basename $0): prints id3 tags to STDOUT in an OGG Vorbis Comment compatible format."
+    echo "$(basename "$0"): prints id3 tags to STDOUT in an OGG Vorbis Comment compatible format."
     echo
     echo "When a tag has no Vorbis Comment equivalent, it is exported verbatim. Pictures are currently not exported."
     echo "If the second argument is a file, metaflac is called on the file instead of printing tags."
@@ -55,7 +55,7 @@ do
     esac
 
     # if unset, the tag should not be printed
-    if [ ! -z $flactag ]
+    if [ ! -z "$flactag" ]
     then
         if [ -z "$flacfile" ]
         then
@@ -72,6 +72,6 @@ done
 if [ ! -z "$metaflaccmd" ] && [ ! -z "$flacfile" ]
 then
     # echo metaflac $metaflaccmd "\"$flacfile"\"
-    eval metaflac $metaflaccmd "\"$flacfile\""
+    eval metaflac "$metaflaccmd" "\"$flacfile\""
 fi
 }

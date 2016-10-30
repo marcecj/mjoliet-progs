@@ -3,7 +3,7 @@
 print_usage() {
     cat <<- EOF
 Usage:
-  $(basename $0) playlist.m3u [output_directory] [streamripper_flags [streamripper_flags]]
+  $(basename "$0") playlist.m3u [output_directory] [streamripper_flags [streamripper_flags]]
 EOF
 exit
 }
@@ -35,11 +35,11 @@ fi
 # any leftover arguments are passed to streamripper verbatim
 streamripper_flags="$@"
 
-grep ^http: $fname | {
+grep ^http: "$fname" | {
 k=1
 while read url
 do
-    name=$(grep -B1 "$url" $fname|tail -n2|head -n1)
+    name=$(grep -B1 "$url" "$fname"|tail -n2|head -n1)
     name=${name#*,}
 
     urls="$urls$url\n"
@@ -51,9 +51,9 @@ done
 
 read -p "Please type in the number of the station you want to rip: " choice <&1
 
-url=$(echo $urls | head -n$choice | tail -n1 | tr '\r\n' '\0')
+url=$(echo "$urls" | head -n"$choice" | tail -n1 | tr '\r\n' '\0')
 
 echo "$streamripper $url -T -d $dir $streamripper_flags"
 echo
-$streamripper $url -T -d $dir $streamripper_flags
+$streamripper "$url" -T -d "$dir" $streamripper_flags
 }

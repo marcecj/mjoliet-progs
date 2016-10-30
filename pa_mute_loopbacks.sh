@@ -2,7 +2,7 @@
 
 print_help() {
     cat <<- EOF
-    $(basename $0): toggles the mute status of pulseaudio loopback streams.
+    $(basename "$0"): toggles the mute status of pulseaudio loopback streams.
 
     This command returns 1 when there are no loopback streams.
 
@@ -51,7 +51,7 @@ print_info() {
 
 indices=$(pactl list short source-outputs | grep module-loopback | cut -f1)
 
-num_loopbacks=$(echo $indices | wc -w)
+num_loopbacks=$(echo "$indices" | wc -w)
 if [ "$num_loopbacks" -eq 0 ]
 then
     echo "No loopback streams found!" >&2
@@ -60,11 +60,11 @@ fi
 
 if [ -n "$verbose" ]
 then
-    for l in $(seq $num_loopbacks)
+    for l in $(seq "$num_loopbacks")
     do
-        index=$(echo $indices|cut -d' ' -f$l)
+        index=$(echo "$indices"|cut -d' ' -f"$l")
         echo "Loopback device #$l:"
-        print_info $index
+        print_info "$index"
         echo
     done
 fi

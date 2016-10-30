@@ -44,7 +44,7 @@ eval set -- "$opts"
 while true; do
     case "$1" in
 	--no-gnuplot) shift; echo "Ignoring gnuplot files."
-	    filetypes=$(echo ${filetypes} | sed s/gpi//);;
+	    filetypes=$(echo "${filetypes}" | sed s/gpi//);;
 	-h|--help)      print_help;;
 	--) shift; break;;
 	*) echo "ERROR!" ; exit 1;;

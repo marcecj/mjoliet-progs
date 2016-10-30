@@ -2,7 +2,7 @@
 
 print_usage() {
     cat <<- EOF
-    $(basename $0) [-n <num>] [-o] [-h] [<dir>]
+    $(basename "$0") [-n <num>] [-o] [-h] [<dir>]
 
     This program prints the largest <num> regular files/directories
     in the current directory. <dir> defaults to the current directory.
@@ -46,7 +46,7 @@ echo
 # 2.) first pass through du, sort output
 # 3.) grab the top $n files, null-delimited
 # 4.) second pass through du
-eval $lscommand -print0 \
+eval "$lscommand" -print0 \
 | du $duopts 2>/dev/null | sort -hr \
-| head -n$((n+1)) | tail -n$n | cut -f2 | tr "\n" "\0" \
+| head -n$((n+1)) | tail -n"$n" | cut -f2 | tr "\n" "\0" \
 | du $duopts 2>/dev/null

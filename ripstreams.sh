@@ -32,9 +32,6 @@ else
     echo
 fi
 
-# any leftover arguments are passed to streamripper verbatim
-streamripper_flags="$@"
-
 grep ^http: "$fname" | {
 k=1
 while read -r url
@@ -53,7 +50,8 @@ read -r -p "Please type in the number of the station you want to rip: " choice <
 
 url=$(echo "$urls" | head -n"$choice" | tail -n1 | tr '\r\n' '\0')
 
-echo "$streamripper $url -T -d $dir $streamripper_flags"
+# any leftover arguments are passed to streamripper verbatim
+echo "$streamripper $url -T -d $dir $*"
 echo
-$streamripper "$url" -T -d "$dir" $streamripper_flags
+$streamripper "$url" -T -d "$dir" "$@"
 }

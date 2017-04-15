@@ -28,10 +28,8 @@ ctagspath=~/.vim/tags/
 
 # --<lang>-kinds definitions
 # see "ctags --list-kinds=<lang>"
-# c and c++ have the same 'kinds'
-cppkinds="+cdfmnpstuvx"
-ckinds=$cppkinds
-pythonkinds="+cfm"
+ckinds="+px"
+cppkinds="${ckinds}"
 
 if [ ! -d $ctagspath ]; then
   echo "$ctagspath:"
@@ -40,7 +38,7 @@ if [ ! -d $ctagspath ]; then
 fi
 
 # Maybe add "--sort=foldcase"? Problem: vim requires "ignorecase".
-options="-R --append=no --sort=foldcase --c-kinds=$ckinds --c++-kinds=$cppkinds --python-kinds=$pythonkinds --fields=+iaS --extra=+q"
+options="-R --append=no --sort=foldcase --c-kinds=$ckinds --c++-kinds=$cppkinds --fields=+iaS --extra=+q"
 
 echo "I am going to search in"
 echo

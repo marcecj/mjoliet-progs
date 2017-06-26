@@ -27,8 +27,7 @@ fi
 
 if [ -n "$REMOTE" ]
 then
-    ssh "$REMOTE" exit
-    if [ $? != 0 ]; then
+    if ! ssh "$REMOTE" exit; then
         echo "Unable to connect to host" >&2
         exit
     fi

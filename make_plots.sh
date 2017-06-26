@@ -12,6 +12,7 @@
 # gnuplot yourself, you can pass the option "--no-gnuplot".
 
 filetypes="ps eps gpi svg ipe"
+program_not_found=0
 
 print_help() {
     cat << EOF
@@ -86,12 +87,12 @@ do
             *) echo "The mute has spoken! Something is amiss... What the hell kind of file is \"$fname\"?"
         esac
         if [ $? -eq "127" ]; then
-            program_not_found=$((program_not_found + 1))
+            global program_not_found=$((program_not_found + 1))
         fi
     done
 done
 
-if [ "${program_not_found:-0}" -gt "0" ]; then
+if [ "$program_not_found" -gt "0" ]; then
     echo
     echo "A program wasn't found at least $program_not_found time(s), make sure"
     echo "you have the following programs installed and in your \$PATH:"

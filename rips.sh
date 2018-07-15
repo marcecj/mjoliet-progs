@@ -8,6 +8,10 @@
 # WAV file with a cue sheet
 cdda2wav -paranoia -cddb 0 -t all -cuefile
 
+if [ $? -neq 0 ]; then
+    echo "cdda2wav exited with status $?"
+fi
+
 # set split2flac options
 out_pattern='@artist - {@year - }@album/@track - @title.@ext'
 flac_opts="-8V"

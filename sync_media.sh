@@ -3,7 +3,7 @@
 DIRS="/home/marcec/Media
 /home/marcec/Music
 /home/marcec/Other"
-TARGET="/media/MARCEC_BACKUP/Informal/"
+TARGET="/media/MARCEC_BACKUP/backups/Informal/"
 RSYNC_OPTIONS="-aX --one-file-system --exclude=lost+found/ --delete --delete-excluded --numeric-ids"
 PRETEND=0
 REMOTE=""

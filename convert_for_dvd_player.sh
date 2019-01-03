@@ -10,16 +10,17 @@ then
     exit 1
 fi
 
+# Some things of note:
+# 1.) specify 25 FPS for PAL ("-r 25"), and
+# 2.) use 702 pixels because of upscaling to 720 pixels (see, e.g.,
+#   https://de.wikipedia.org/wiki/ITU-R_BT_601).
 for f in "$@"
 do
     ffmpeg -i "$f" \
         -c:v mpeg4 -c:a libmp3lame \
         -q:v 3 -q:a 3 \
         -tag:v xvid \
-        # 25 FPS for PAL
         -r 25 \
-        # use 702 pixels because of upscaling to 720 pixels (see, e.g.,
-        # https://de.wikipedia.org/wiki/ITU-R_BT_601)
         -vf "scale=702:576" \
         "$f.avi"
 done

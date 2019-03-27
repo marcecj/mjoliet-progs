@@ -7,7 +7,7 @@
 LANGUAGES="C Make Python Sh tex Vim Lua matlab"
 searchpaths="/usr/include
              /usr/local/include
-             /usr/lib/python*/
+             /usr/lib64/python*/
              /usr/share/texmf-dist/
              /usr/share/octave/"
 

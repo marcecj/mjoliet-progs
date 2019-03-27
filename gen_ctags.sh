@@ -9,7 +9,8 @@ searchpaths="/usr/include
              /usr/local/include
              /usr/lib64/python*/
              /usr/share/texmf-dist/
-             /usr/share/octave/"
+             /usr/share/octave/
+             /usr/share/vim/"
 
 for path in $searchpaths
 do

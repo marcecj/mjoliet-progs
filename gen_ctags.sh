@@ -9,7 +9,6 @@ searchpaths="/usr/include
              /usr/local/include
              /usr/lib/python*/
              /usr/share/texmf-dist/
-             /usr/share/awesome/lib/
              $HOME/.local/MATLAB/"
 
 for path in $searchpaths

@@ -39,7 +39,7 @@ if [ ! -d $ctagspath ]; then
 fi
 
 # Maybe add "--sort=foldcase"? Problem: vim requires "ignorecase".
-options="-R --append=no --sort=foldcase --c-kinds=$ckinds --c++-kinds=$cppkinds --fields=+iaS --extra=+q"
+options="-R --append=no --sort=foldcase --kinds-c=$ckinds --kinds-c++=$cppkinds --fields=+iaS --extras=+q"
 
 echo "I am going to search in"
 echo

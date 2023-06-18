@@ -1,8 +1,9 @@
 #!/bin/sh
 
-DIRS="/home/marcec/Media
-/home/marcec/Music"
-TARGET="/media/MARCEC_BACKUP/backups/Informal/"
+# a list of source/target pairs
+DIRS="/home/marcec/Media /media/MARCEC_BACKUP/backups/Informal/
+/home/marcec/Music /media/MARCEC_BACKUP/backups/Informal/
+/home/marcec/Music/ /mnt/barry_data/Music/"
 RSYNC_OPTIONS="-aX --one-file-system --exclude=lost+found/ --delete --delete-excluded --numeric-ids"
 PRETEND=0
 REMOTE=""
@@ -30,17 +31,18 @@ then
         echo "Unable to connect to host" >&2
         exit
     fi
-
-    TARGET="$REMOTE:$TARGET"
 fi
-
-echo "Target is \"$TARGET\"."
 
 [ $PRETEND -eq 1 ] && echo "Would execute:"
 
 echo "$DIRS" | while read -r d;
 do
-    if [ ! -d "$d" ];
+    source="$(echo $d | cut -d' ' -f1)"
+    target="$REMOTE:$(echo $d | cut -d' ' -f2)"
+
+    echo "Backing up \"$source\" to \"$target\"."
+
+    if [ ! -d "$source" ];
     then
         echo "Non-existent source!" >&2
         exit
@@ -48,8 +50,8 @@ do
 
     if [ $PRETEND -eq 1 ]
     then
-        echo rsync "$RSYNC_OPTIONS" "$d" "$TARGET"
+        echo rsync "$RSYNC_OPTIONS" "$source" "$target"
     else
-        rsync $RSYNC_OPTIONS "$d" "$TARGET"
+        rsync $RSYNC_OPTIONS "$source" "$target"
     fi
 done
